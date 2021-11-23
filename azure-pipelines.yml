@@ -27,7 +27,7 @@ resources:
 variables:
   - template: '/miscellaneous/build_templates/variables.yml@templates'
   - name: analysisProject
-    value: SDS_TS_DotNet
+    value: Auth-CC_Python
 
 jobs:
   - job: Tests
@@ -46,33 +46,29 @@ jobs:
         parameters:
           secrets: 'TenantId, NamespaceId, ClientId, ClientSecret'
 
-      - task: DotNetCoreCLI@2
-        displayName: 'Nuget restore'
-        inputs:
-          command: restore
-
-      - task: DotNetCoreCLI@2
+      - script: |
+          echo Install test tools   
+          pip install pytest
+          echo Install requirements
+          pip install -r requirements.txt
+          echo Run tests
+          python -m pytest --junitxml=junit/test-results.xml ./test.py
+          echo Complete
         displayName: 'Run tests'
+
+      - task: PublishTestResults@2
         inputs:
-          command: test
-          publishTestResults: true
+          testResultsFiles: '**/test-*.xml'
+          failTaskOnFailedTests: true
           testRunTitle: '$(Agent.JobName) on $(Agent.OS)'
+        displayName: 'Publish test results'
+        condition: always()
 
   - job: Analysis
     pool:
       name: 00-OSIManaged-Containers
       demands: Agent.OS -equals Windows_NT
     steps:
-      - task: DotNetCoreCLI@2
-        displayName: 'Nuget restore'
-        inputs:
-          command: restore
-
-      - task: DotNetCoreCLI@2
-        displayName: 'Build'
-        inputs:
-          command: build
-
-      - template: '/miscellaneous/build_templates/binskim.yml@templates'
-
       - template: '/miscellaneous/build_templates/analysis.yml@templates'
+        parameters:
+          useRequirementsTxt: true
