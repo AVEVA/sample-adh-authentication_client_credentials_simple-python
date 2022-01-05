@@ -2,9 +2,9 @@
 
 **Version:** 1.0.0
 
-[![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-authentication_client_credentials_simple-dotnet?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=4393&branchName=main)
+[![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-authentication_client_credentials_simple-python?repoName=osisoft%2Fsample-ocs-authentication_client_credentials_simple-python&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=4392&repoName=osisoft%2Fsample-ocs-authentication_client_credentials_simple-python&branchName=main)
 
-Developed against Python 3.9.1.
+Developed against Python 3.9.5.
 
 ## Requirements
 
@@ -48,7 +48,7 @@ python program.py
 
 ---
 
-Tested against Python 3.9.1  
+Tested against Python 3.9.5
 For the OCS Assets samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/ASSETS.md)  
 For the main OCS samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
 For the main OSIsoft samples page [ReadMe](https://github.com/osisoft/OSI-Samples)
