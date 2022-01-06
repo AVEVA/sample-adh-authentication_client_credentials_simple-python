@@ -18,9 +18,9 @@ This sample is meant to be a very simple and straightforward to show how you can
 
 Steps:
 1. Get needed variables
-1. Get the authentication endpoint from the discovery URL
-1. Use the client ID and Secret to get the bearer token from the authentication endpoint
-1. Test it by calling the base tenant endpoint and making sure a valid response is returned
+1. Get the token (authentication) endpoint from the discovery URL
+1. Use the Client ID and Secret to get a bearer token from the token endpoint
+1. Test it by calling the base tenant endpoint, ensuring a valid response is returned
 
 ## Configuring the sample
 
@@ -49,6 +49,7 @@ python program.py
 ---
 
 Tested against Python 3.9.5
-For the OCS Assets samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/ASSETS.md)  
+
+For the main OCS Authentication samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/AUTHENTICATION.md)  
 For the main OCS samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
 For the main OSIsoft samples page [ReadMe](https://github.com/osisoft/OSI-Samples)

@@ -19,6 +19,10 @@ schedules:
 
 resources:
   repositories:
+    - repository: OpsGuildAutomationRepo
+      type: git
+      name: Engineering/OpsGuild.Automation
+      ref: refs/heads/main
     - repository: templates
       type: github
       name: osisoft/OSI-Samples
@@ -32,7 +36,6 @@ variables:
 jobs:
   - job: Tests
     strategy:
-      maxParallel: 1 # Avoid conflicts in OCS
       matrix:
         linux:
           agentOS: Linux
@@ -44,7 +47,7 @@ jobs:
     steps:
       - template: '/miscellaneous/build_templates/appsettings.yml@templates'
         parameters:
-          secrets: 'TenantId, NamespaceId, ClientId, ClientSecret'
+          secrets: 'TenantId, ClientId, ClientSecret'
 
       - script: |
           echo Install test tools   
@@ -64,11 +67,6 @@ jobs:
         displayName: 'Publish test results'
         condition: always()
 
-  - job: Analysis
-    pool:
-      name: 00-OSIManaged-Containers
-      demands: Agent.OS -equals Windows_NT
-    steps:
-      - template: '/miscellaneous/build_templates/analysis.yml@templates'
-        parameters:
-          useRequirementsTxt: true
+  - template: '/miscellaneous/build_templates/code-analysis.yml@templates'
+    parameters:
+      useRequirementsTxt: true
