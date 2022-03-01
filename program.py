@@ -1,7 +1,9 @@
+import json
+import requests
+
 # Step 1: get needed variables 
 appsettings = {}
-with open('appsettings.json', 'r',) as f:
-    import json
+with open('appsettings.json', 'r') as f:
     appsettings = json.load(f)
 
 resource = appsettings.get('Resource')
@@ -9,10 +11,6 @@ api_version = appsettings.get('ApiVersion')
 tenant_id = appsettings.get('TenantId')
 client_id = appsettings.get('ClientId')
 client_secret = appsettings.get('ClientSecret')
-
-
-import requests
-import json
 
 # Step 2: get the authentication endpoint from the discovery URL
 wellknown_information = requests.get(f'{resource}/identity/.well-known/openid-configuration')
@@ -27,4 +25,4 @@ msg_headers= {"Authorization": f'Bearer {token}'}
 test = requests.get(f'{resource}/api/{api_version}/Tenants/{tenant_id}', headers=msg_headers)
 
 # test it by making sure we got a valid http status code  
-assert test.status_code >= 200 and test.status_code < 300
+assert test.status_code == 200
