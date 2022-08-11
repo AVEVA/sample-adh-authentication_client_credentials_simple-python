@@ -31,10 +31,8 @@ resources:
 
 variables:
   - template: '/miscellaneous/build_templates/variables.yml@templates'
-  - name: BLACK_DUCK_PROJECT_NAME
+  - name: analysisProject
     value: Auth-CC_Python
-  - name: POLARIS_PROJECT_NAME
-    value: CC_Python-CC_Rust
 
 parameters:
   - name: pool
