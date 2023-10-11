@@ -29,7 +29,6 @@ resources:
       endpoint: AVEVA
 
 variables:
-  - template: '/miscellaneous/build_templates/variables.yml@templates'
   - name: analysisProject
     value: Auth-CC_Python
 
